@@ -54,14 +54,11 @@ alias l="ls -lF ${colorflag}"
 # List all files colorized in long format, including dot files
 alias la="ls -laF ${colorflag}"
 
-# List only directories
-alias lsd="ls -lF ${colorflag} | grep '^d'"
-
 # List long format
 alias ll="ls -l"
 
 # List in long format, only directories
-alias ld="ls -ld */"
+alias ld="ls -ld -- */"
 
 
 # Sort by extension
@@ -89,7 +86,7 @@ alias lm='ls -al | less'
 # Recursive ls
 alias lr='ls -lR'
 
-# Alternative to recursive ls
+# Tree defaults
 alias tree='tree -Csu'
 
 #-------------------------------------------------------------
