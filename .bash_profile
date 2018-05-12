@@ -40,7 +40,7 @@ PATH="$DOTFILES_DIR/bin:$PATH"
 
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/.{export,alias,function}; do
+for DOTFILE in "$DOTFILES_DIR"/.{export,alias,function,lendup}; do
   # [ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && 
   source "$DOTFILE";
 done;
