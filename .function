@@ -121,9 +121,9 @@ fi;
 # opens the given location
 function s() {
     if [ $# -eq 0 ]; then
-        subl .;
+        sublime .;
     else
-        subl "$@";
+        sublime "$@";
     fi;
 }
 
