@@ -26,6 +26,12 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
 
+#-------------------------------------------------------------
+# Data Science
+#-------------------------------------------------------------
+alias ipy="ipython"
+alias jnb="jupyter notebook --no-browser"
+alias jlb="jupyter lab --no-browser"
 
 #-------------------------------------------------------------
 # The 'ls' family
@@ -40,8 +46,7 @@ else # macOS `ls`
 fi
 
 # Always use color output for `ls`
-alias ls="command ls ${colorflag}"
-# alias ls="command ls -hF ${colorflag}"
+alias ls="command ls -hF ${colorflag}"
 
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
@@ -50,18 +55,42 @@ alias l="ls -lF ${colorflag}"
 alias la="ls -laF ${colorflag}"
 
 # List only directories
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+alias lsd="ls -lF ${colorflag} | grep '^d'"
 
-alias ld="ls -ld */"   	   # List in long format, only directories
+# List long format
 alias ll="ls -l"
-alias lx='ls -lXB'         # sort by extension
-alias lk='ls -lSr'         # sort by size, biggest last
-alias lc='ls -ltcr'        # sort by and show change time, most recent last
-alias lu='ls -ltur'        # sort by and show access time, most recent last
-alias lt='ls -ltr'         # sort by date, most recent last
-alias lm='ls -al | less'   # pipe through 'more'
-alias lr='ls -lR'          # recursive ls
-alias tree='tree -Csu'     # nice alternative to 'recursive ls'
+
+# List in long format, only directories
+alias ld="ls -ld */"
+
+
+# Sort by extension
+if is-macos; then
+  eval "alias lx='gls -lXB'"
+else
+  eval "alias lx='ls -lXB'"
+fi
+
+# Sort by size, biggest last
+alias lk='ls -lSr'
+
+# Sort by and show change time, most recent last
+alias lc='ls -ltcr'
+
+# Sort by and show access time, most recent last
+alias lu='ls -ltur'
+
+# Sort by date, most recent last
+alias lt='ls -ltr'
+
+# Pipe through 'more'
+alias lm='ls -al | less'
+
+# Recursive ls
+alias lr='ls -lR'
+
+# Alternative to recursive ls
+alias tree='tree -Csu'
 
 #-------------------------------------------------------------
 # Macintosh
@@ -88,15 +117,24 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# Google Chrome
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+## Google Chrome
+# alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume output volume 100'"
+# Volume controls
+alias vmute="osascript -e 'set volume output muted true'"
+alias v10="osascript -e 'set volume output volume 10'"
+alias v20="osascript -e 'set volume output volume 20'"
+alias v30="osascript -e 'set volume output volume 30'"
+alias v40="osascript -e 'set volume output volume 40'"
+alias v50="osascript -e 'set volume output volume 50'"
+alias v60="osascript -e 'set volume output volume 60'"
+alias v70="osascript -e 'set volume output volume 70'"
+alias v80="osascript -e 'set volume output volume 80'"
+alias v90="osascript -e 'set volume output volume 90'"
+alias v100="osascript -e 'set volume output volume 100'"
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -109,5 +147,3 @@ alias h='history'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
-
-# alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
