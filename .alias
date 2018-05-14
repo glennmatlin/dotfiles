@@ -107,6 +107,7 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 alias dotfiles='$EDITOR ~/.dotfiles'
 alias sudo='sudo '
 alias mkdir='mkdir -p'
+alias workoff='deactivate'
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
