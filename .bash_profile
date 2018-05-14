@@ -1,15 +1,13 @@
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 
-# Ensure user-installed binaries take precedence
-export PATH=/usr/local/bin:$PATH
-
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=/Users/glenn.matlin/virtualenv
-source /usr/local/bin/virtualenvwrapper.sh
-
+# Virtual Environments
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/development
+
+# export PATH=$VIRTUALENVWRAPPER_VIRTUALENV$PATH
+source /usr/local/bin/virtualenvwrapper.sh
 
 #-------------------------------------------------------------
 # DOTFILES
