@@ -24,6 +24,9 @@ brew install gnu-sed --with-default-names
 brew install bash
 brew install bash-completion2
 
+# F.lux
+brew install flux
+
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
