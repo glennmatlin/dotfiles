@@ -44,6 +44,7 @@ for DOTFILE in "$DOTFILES_DIR"/.{export,alias,function,lendup}; do
 done;
 unset DOTFILE;
 
+
 # env,alias,inputrc,function,function_*
 
 # if is-macos; then
