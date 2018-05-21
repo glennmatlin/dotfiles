@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Install command-line tools using Homebrew.
+# Homebrew Installation
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -18,14 +18,12 @@ brew install moreutils
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
-# Install Bash 4.
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
-# running `chsh`.
-brew install bash
-brew install bash-completion2
 
-# F.lux
-brew install flux
+# # Install Bash 4.
+# # Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
+# # running `chsh`.
+# brew install bash
+# brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
@@ -45,7 +43,7 @@ brew install grep
 # brew install openssh
 # brew install screen
 # brew install homebrew/php/php56 --with-gmp
-brew cask install spectacle
+
 
 # # Install font tools.
 # brew tap bramstein/webfonttools
@@ -96,6 +94,18 @@ brew cask install spectacle
 # brew install tree
 # brew install vbindiff
 # brew install zopfli
+
+# Text Editing
+brew cask install iterm2
+brew cask install macdown
+brew cask install boostnote
+brew cask install sublime-text
+brew cask install diffmerge
+
+# Quality of Life
+brew install flux
+brew cask install spectacle
+
 
 # Remove outdated versions from the cellar.
 brew cleanup
