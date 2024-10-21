@@ -1,5 +1,6 @@
 # Glenn's .dotfiles
 
-Sources of Inspiration
-https://github.com/webpro/awesome-dotfiles
-https://github.com/mathiasbynens/dotfiles
+## Python
+### Pyenv
+https://github.com/pyenv/pyenv
+https://github.com/pyenv/pyenv-virtualenv
