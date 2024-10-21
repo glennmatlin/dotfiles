@@ -6,14 +6,10 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-# Universal
-brew install git
-brew install git-lfs
-brew install rename
-brew install tree
-
 # WSL Ubuntu
 brew install nvtop
+brew install thefuck
+brew install git git-lfs
 
 # # Mac OS
 # # Mac OS: GNU utilities
@@ -27,6 +23,7 @@ brew install nvtop
 # brew install gnu-sed --with-default-names
 # # Mac OS : Tools
 # TODO: If Mac then run else skip
+# brew install git git-lfs
 # brew install vim --with-override-system-vi
 # brew install grep
 # brew install openssh
