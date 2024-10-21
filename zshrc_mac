@@ -1,18 +1,33 @@
-vpn() {
-	if [ "$1" = "unload" ]; then
-		launchctl bootout gui/$(id -u) /Library/LaunchAgents/com.paloaltonetworks.gp.pangpa.plist > /dev/null 2>&1
-		launchctl bootout gui/$(id -u) /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist > /dev/null 2>&1
-		launchctl bootout gui/$(id -u) /Library/LaunchDaemons/com.paloaltonetworks.gp.pangpsd.plist > /dev/null 2>&1
-		PID="$(launchctl list | grep palo | cut -f 1)"
-		kill $PID
-		echo "VPN unloaded"
-	else
-		launchctl bootstrap gui/$(id -u) /Library/LaunchAgents/com.paloaltonetworks.gp.pangpa.plist
-		launchctl bootstrap gui/$(id -u) /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist 
-		launchctl bootstrap gui/$(id -u) /Library/LaunchDaemons/com.paloaltonetworks.gp.pangpsd.plist
-		open -a /Applications/GlobalProtect.app
-	fi
-}
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Configure Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# # Utility for Un/Loading Georgia Tech GlobalProtect VPN
+# vpn() {
+# 	if [ "$1" = "unload" ]; then
+# 		launchctl bootout gui/$(id -u) /Library/LaunchAgents/com.paloaltonetworks.gp.pangpa.plist > /dev/null 2>&1
+# 		launchctl bootout gui/$(id -u) /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist > /dev/null 2>&1
+# 		launchctl bootout gui/$(id -u) /Library/LaunchDaemons/com.paloaltonetworks.gp.pangpsd.plist > /dev/null 2>&1
+# 		PID="$(launchctl list | grep palo | cut -f 1)"
+# 		kill $PID
+# 		echo "VPN unloaded"
+# 	else
+# 		launchctl bootstrap gui/$(id -u) /Library/LaunchAgents/com.paloaltonetworks.gp.pangpa.plist
+# 		launchctl bootstrap gui/$(id -u) /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist 
+# 		launchctl bootstrap gui/$(id -u) /Library/LaunchDaemons/com.paloaltonetworks.gp.pangpsd.plist
+# 		open -a /Applications/GlobalProtect.app
+# 	fi
+# }
 
 
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
@@ -77,7 +92,26 @@ zstyle ':omz:update' frequency 13
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+
+plugins=(
+  z
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  pyenv
+  python
+  pip
+  git
+  gh
+  github
+  git-auto-fetch
+  brew
+  emoji
+  emoji-clock
+  history
+#   hitchhiker
+  safe-paste
+  sublime
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,3 +151,6 @@ alias ohmyzsh="mate ~/.oh-my-zsh"
 # # <<< conda initialize <<<
 
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

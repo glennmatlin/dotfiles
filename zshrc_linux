@@ -81,7 +81,7 @@ plugins=(
   emoji
   emoji-clock
   history
-  hitchhiker
+  # hitchhiker
   safe-paste
   sublime
   # # https://github.com/ohmyzsh/ohmyzsh/wiki/plugins

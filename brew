@@ -6,12 +6,13 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-# WSL Ubuntu
-brew install nvtop
-brew install thefuck
+# Brew Installations
 brew install git git-lfs
+brew install thefuck
+brew install pyenv
+brew install nvtop
 
-# # Mac OS
+# # Mac OS Only
 # # Mac OS: GNU utilities
 # # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 # brew install coreutils
@@ -38,6 +39,8 @@ brew install git git-lfs
 # # Mac OS: Apps UX/UI
 # brew cask install spectacle
 # brew install flux
+
+# WSL Ubuntu Only
 
 # Remove outdated versions from the cellar.
 brew cleanup
