@@ -2,13 +2,15 @@
 
 ## Shell
 
-### Bash
+### `bash`
 
-### ZSH
+### `zsh
+https://zsh.sourceforge.io/
 
-#### oh-my-zsh
+#### `oh-my-zsh`
+https://ohmyz.sh/
 
-##### omz Themes
+##### `omz` Themes
 
 - https://github.com/romkatv/powerlevel10k
   install fonts
