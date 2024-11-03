@@ -1,0 +1,7 @@
+[user]
+	name = Glenn Matlin
+	email = glennmatlin@users.noreply.github.com
+[credential]
+	helper = store
+[github]
+	token = 

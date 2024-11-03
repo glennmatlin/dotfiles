@@ -1,0 +1,12 @@
+[dotfiles]
+repository = ~/Dotfiles
+ignore = [
+    '*.md'
+    '.git',
+    '.gitignore',
+    '*.swp'
+    ]
+externals = {
+    '.tmp':         '/tmp'
+    }
+packages = ['config']
