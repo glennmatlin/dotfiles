@@ -4,7 +4,7 @@
 
 ### `bash`
 
-### `zsh
+### `zsh`
 https://zsh.sourceforge.io/
 
 #### `oh-my-zsh`
