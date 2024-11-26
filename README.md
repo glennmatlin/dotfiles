@@ -6,6 +6,11 @@
 - https://github.com/jbernard/dotfiles
 
 ## Shell
+https://github.com/ryanoasis/nerd-fonts
+
+### Starship
+https://youtu.be/Xyr_EOmEB_g
+https://starship.rs/
 
 ### Bash
 
@@ -25,7 +30,6 @@
   
   ```
 - https://github.com/powerline/fonts
-- https://github.com/ryanoasis/nerd-fonts
 
 ##### omg plugins
 
@@ -65,6 +69,9 @@ After resource the ~/.zshrc file source ~/.zshrc, the zsh-syntax-highlighting pl
 * https://github.com/pyenv/pyenv-virtualenv
 
 ## Windows
+
+### `chocolatey`
+* https://chocolatey.org/install#individual
 
 ### `scoop`
 https://scoop.sh/
