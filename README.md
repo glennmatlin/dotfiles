@@ -71,36 +71,10 @@ After resource the ~/.zshrc file source ~/.zshrc, the zsh-syntax-highlighting pl
 ## Windows
 
 ### `chocolatey`
-* https://chocolatey.org/install#individual
+https://chocolatey.org/install#individual
 
 ### `scoop`
 https://scoop.sh/
-1. Install using PowerShell
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-```
-2. Add extra download repositories
-```powershell
-scoop bucket add extras
-scoop bucket add nerd-fonts
-scoop bucket add nonportable
-```
-3. Install portable
-```powershell
-scoop install <nerd-font>
-scoop install extras/sublime-text
-scoop install extras/vscode
-scoop install extras/github
-```
-4. Install non-portable
-```powershell
-scoop install grammarly-np
-```
-
-### Terminal
-
-https://github.com/microsoft/terminal
 
 #### Oh My Posh
 
