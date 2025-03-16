@@ -89,6 +89,9 @@ scoop bucket add nonportable
 3. Install portable
 ```powershell
 scoop install <nerd-font>
+scoop install extras/sublime-text
+scoop install extras/vscode
+scoop install extras/github
 ```
 4. Install non-portable
 ```powershell
