@@ -30,6 +30,7 @@ scoop install git
 scoop install main/git-lfs
 scoop install extras/github
 scoop install extras/lazygit
+scoop install main/uv
 
 # ML/AI specific
 scoop install extras/miniconda3
