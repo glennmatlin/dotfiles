@@ -23,3 +23,12 @@ sudo apt-get -y install cuda
 brew install erdtree
 brew install broot
 brew install neovim
+brew install ripgrep
+brew install fd
+brew install bat
+brew install exa
+brew install git-delta
+brew install shellcheck
+brew install shfmt
+brew install jq
+brew install yq
