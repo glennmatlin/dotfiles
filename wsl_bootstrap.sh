@@ -26,7 +26,7 @@ brew install neovim
 brew install ripgrep
 brew install fd
 brew install bat
-brew install exa
+brew install eza
 brew install git-delta
 brew install shellcheck
 brew install shfmt
