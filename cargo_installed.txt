@@ -1,0 +1,2 @@
+zellij v0.42.2:
+    zellij
