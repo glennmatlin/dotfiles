@@ -91,7 +91,7 @@ When working with code that contains comments or documentation:
 
 This applies to both code-level comments and documentation in separate files. Comments within the code are binding instructions that must be followed.
 
-## Knowledge Sharing and Persistence
+### Knowledge Sharing and Persistence
 
 - When asked to remember something, ALWAYS persist this information in a way that's accessible to ALL developers, not just in conversational memory
 - Document important information in appropriate files (comments, documentation, README, etc.) so other developers (human or AI) can access it
@@ -101,14 +101,14 @@ This applies to both code-level comments and documentation in separate files. Co
 - The goal is complete knowledge sharing between ALL developers (human and AI) without exceptions
 - When suggesting where to store information, recommend appropriate locations based on the type of information (code comments, documentation files, CLAUDE.md, etc.)
 
-## Commands and Tasks
+### Commands and Tasks
 
 - Files in the `.claude/commands/` directory contain instructions for automated tasks
 - These files are READ-ONLY and should NEVER be modified
 - When a command is run, follow the instructions in the file exactly, without trying to improve or modify the file itself
 - Command files may include a YAML frontmatter with metadata - respect any `read_only: true` flags
 
-## Path References
+### Path References
 
 - When a path starts with `./` in any file containing instructions for Claude, it means the path is relative to that file's location. Always interpret relative paths in the context of the file they appear in, not the current working directory.
 
@@ -157,26 +157,6 @@ This applies to both code-level comments and documentation in separate files. Co
   git show HEAD~1 | delta
   ```
 
-### Code Quality & Validation
-
-**Shell Scripts**
-1. **Always lint** before execution:
-   ```bash
-   shellcheck script.sh
-   ```
-
-2. **Always format** for consistency:
-   ```bash
-   shfmt -w script.sh
-   ```
-
-**Python Code**
-- **Always use** `ruff` for linting and formatting:
-  ```bash
-  ruff check .
-  ruff format .
-  ```
-
 ### Data Processing
 
 - **JSON**: Use `jq` for all JSON operations
@@ -192,92 +172,92 @@ This applies to both code-level comments and documentation in separate files. Co
   ```
 
 
-## Python Development Workflow
+### Build & Test Commands
 
-### Package Management
+#### Using uv (recommended)
+- Install dependencies: `uv pip install --system -e .`
+- Install dev dependencies: `uv pip install --system -e ".[dev]"`
+- Update lock file: `uv pip compile --system pyproject.toml -o uv.lock`
+- Install from lock file: `uv pip sync --system uv.lock`
 
-**Critical Rule**: Always use `uv` package manager. Never run Python directly.
+#### Using pip (alternative)
+- Install dependencies: `pip install -e .`
+- Install dev dependencies: `pip install -e ".[dev]"`
 
-```bash
-# Correct usage
-uv pip install pandas
-uv run python script.py
-
-# NEVER do this
-python script.py
-pip install package
-```
-
-
-## Git Commit Standards
-
-1. **No signatures or attribution**
-   - No names, handles, or "Created by" messages
-   - No AI/Claude references
-
-2. **Commit message format**:
-   ```
-   type: brief objective description
-   
-   - Specific change 1
-   - Specific change 2
-   ```
-
-3. **Example good commits**:
-   ```
-   fix: correct data validation logic in parser
-   
-   - Add null check for optional fields
-   - Update regex pattern for email validation
-   ```
+#### Testing and linting
+- Run tests: `pytest`
+- Run single test: `pytest tests/path/to/test_file.py::test_function_name -v`
+- Run tests with coverage: `python -m pytest --cov=src/file tests/`
+- Run linter: `ruff check src/ tests/`
+- Format code: `ruff format src/ tests/`
 
 
-## Workflow Best Practices
-
-### Before Any Operation
-
-1. **Verify environment**: Check tool availability
-2. **Validate syntax**: Use appropriate linters
-3. **Test incrementally**: Run small verification steps
-
-### File Manipulation
-
-1. **Always backup** before major changes:
-   ```bash
-   cp important.conf important.conf.bak
-   ```
-
-2. **Use version control** for tracking:
-   ```bash
-   git add -p  # Review changes before staging
-   ```
-
-### Error Handling
-
-- Anticipate common failure modes
-- Provide clear error messages
-- Suggest actionable fixes
+## Technical Guidelines
 
 
-## Integration Guidelines
+### Project Management
+- **Python version**: Python 3.11+ is preferred
+- **Project config**: `pyproject.toml` for configuration and dependency management
+- **Environment**: Use virtual environment in `.venv` for dependency isolation
+- **Package management**: Use `uv` for faster, more reliable dependency management with lock file
+- **Dependencies**: Separate production and dev dependencies in `pyproject.toml`
+- **Version management**: Use `setuptools_scm` for automatic versioning from Git tags
+- **Linting**: `ruff` for style and error checking
+- **Type checking**: Use VS Code with Pylance for static type checking
+- **Project layout**: Organize code with `src/` layout
 
-### CI/CD Workflows
+### Code Style Guidelines
 
-Embed quality checks in all pipelines:
-```yaml
-steps:
-  - shellcheck scripts/*.sh
-  - shfmt -d scripts/*.sh
-  - ruff check .
-  - ruff format --check .
-```
+- **Formatting**: Black-compatible formatting via `ruff format`
+- **Imports**: Sort imports with `ruff` (stdlib, third-party, local)
+- **Type hints**: Use native Python type hints (e.g., `list[str]` not `List[str]`)
+- **Documentation**: Google-style docstrings for all modules, classes, functions
+- **Naming**: snake_case for variables/functions, PascalCase for classes
+- **Function length**: Keep functions short (< 30 lines) and single-purpose
+- **PEP 8**: Follow PEP 8 style guide (enforced via `ruff`)
 
-### Documentation
+### Python Best Practices
 
-- Keep technical documentation factual
-- Avoid subjective quality assessments
-- Focus on functionality and usage
+- **File handling**: Prefer `pathlib.Path` over `os.path`
+- **Debugging**: Use `logging` module instead of `print`
+- **Error handling**: Use specific exceptions with context messages and proper logging
+- **Data structures**: Use list/dict comprehensions for concise, readable code
+- **Function arguments**: Avoid mutable default arguments
+- **Data containers**: Leverage `dataclasses` to reduce boilerplate
+- **Configuration**: Use environment variables (via `python-dotenv`) for configuration
+- **Security**: Never store/log secret credentials, set command timeouts
 
+### Development Patterns & Best Practices
+
+- **Favor simplicity**: Choose the simplest solution that meets requirements
+- **DRY principle**: Avoid code duplication; reuse existing functionality
+- **Configuration management**: Use environment variables for different environments
+- **Focused changes**: Only implement explicitly requested or fully understood changes
+- **Preserve patterns**: Follow existing code patterns when fixing bugs
+- **File size**: Keep files under 300 lines; refactor when exceeding this limit
+- **Test coverage**: Write comprehensive unit and integration tests with `pytest`; include fixtures
+- **Test structure**: Use table-driven tests with parameterization for similar test cases
+- **Mocking**: Use unittest.mock for external dependencies; don't test implementation details
+- **Modular design**: Create reusable, modular components
+- **Logging**: Implement appropriate logging levels (debug, info, error)
+- **Error handling**: Implement robust error handling for production reliability
+- **Security best practices**: Follow input validation and data protection practices
+- **Performance**: Optimize critical code sections when necessary
+- **Dependency management**: Add libraries only when essential
+  - When adding/updating dependencies, update `pyproject.toml` first
+  - Regenerate the lock file with `uv pip compile --system pyproject.toml -o uv.lock`
+  - Install the new dependencies with `uv pip sync --system uv.lock`
+
+### Development Workflow
+
+- **Version control**: Commit frequently with clear messages
+- **Versioning**: Use Git tags for versioning (e.g., `git tag -a 1.2.3 -m "Release 1.2.3"`)
+  - For releases, create and push a tag
+  - For development, let `setuptools_scm` automatically determine versions
+- **Impact assessment**: Evaluate how changes affect other codebase areas
+- **Documentation**: Keep documentation up-to-date for complex logic and features
+- **Dependencies**: When adding dependencies, always update the `uv.lock` file
+- **CI/CD**: All changes should pass CI checks (tests, linting, etc.) before merging
 
 ## LOGBOOK.md Protocol
 
