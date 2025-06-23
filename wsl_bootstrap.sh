@@ -3,8 +3,8 @@
 # Update and install essential packages
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git
+  libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+  xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git
 
 # Install ML/AI dependencies
 sudo apt install -y python3-pip python3-dev
@@ -19,7 +19,6 @@ sudo cp /var/cuda-repo-wsl-ubuntu-11-8-local/cuda-*-keyring.gpg /usr/share/keyri
 sudo apt-get update
 sudo apt-get -y install cuda
 
-
 brew install erdtree
 brew install broot
 brew install neovim
@@ -32,3 +31,5 @@ brew install shellcheck
 brew install shfmt
 brew install jq
 brew install yq
+brew install yazi ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide resvg imagemagick
+
