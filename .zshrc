@@ -32,5 +32,3 @@ setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 export PATH="/home/gmatlin/.local/bin:$PATH"
-
-alias claude="/home/gmatlin/.claude/local/claude"

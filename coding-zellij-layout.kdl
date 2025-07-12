@@ -1,0 +1,78 @@
+layout {
+    cwd "/home/gmatlin/Codespace"
+    tab name="ClaudeCode" hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar" {
+                hide_swap_layout_indication "true"
+            }
+        }
+        pane command="claude" name="Claude" cwd="/home/gmatlin/Codespace/FinPileCode" {
+            start_suspended true
+        }
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar" {
+                classic "true"
+            }
+        }
+    }
+    tab name="FileMgr" hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar" {
+                hide_swap_layout_indication "true"
+            }
+        }
+        pane command="lf" name="lf" cwd="/home/gmatlin/Codespace/FinPileCode" {
+            start_suspended true
+        }
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar" {
+                classic "true"
+            }
+        }
+    }
+    tab name="LazyGit" hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar" {
+                hide_swap_layout_indication "true"
+            }
+        }
+        pane command="[git]" name="LazyGit" cwd="FinPileCode" {
+            args "<defunct>"
+            start_suspended true
+        }
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar" {
+                classic "true"
+            }
+        }
+    }
+    tab name="LazyVim" hide_floating_panes=true {
+        pane command="nvim" name="lazyvim" {
+            start_suspended true
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar" {
+                hide_swap_layout_indication "true"
+            }
+        }
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar" {
+                classic "true"
+            }
+        }
+    }
+    new_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar" {
+                hide_swap_layout_indication "true"
+            }
+        }
+        pane cwd="/home/gmatlin/Codespace/FinPileCode"
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar" {
+                classic "true"
+            }
+        }
+    }
+}
+

@@ -1,0 +1,42 @@
+layout {
+    // Tab bar at the top
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    
+    // Main working area
+    pane split_direction="vertical" {
+        // Left side: Main editor/work area (70% width)
+        pane size="70%" {
+            // You can add 'edit="filename"' here to open a specific file
+            // or just leave it as a shell to navigate to your project
+        }
+        
+        // Right side: Supporting panes (30% width)
+        pane split_direction="horizontal" size="30%" {
+            // Top right: Terminal for commands/builds/tests
+            pane size="50%" name="Terminal"
+            
+            // Bottom right: Git status or file explorer
+            pane size="50%" name="Git" command="git" {
+                args "status" "-sb"
+                // Change to 'args "log" "--oneline" "-10"' if you prefer git log
+            }
+        }
+    }
+    
+    // Status bar at the bottom
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
+
+// Optional: Define a custom keybinding to quickly switch focus
+// keybinds {
+//     normal {
+//         bind "Alt h" { MoveFocus "Left"; }
+//         bind "Alt l" { MoveFocus "Right"; }
+//         bind "Alt j" { MoveFocus "Down"; }
+//         bind "Alt k" { MoveFocus "Up"; }
+//     }
+// }
