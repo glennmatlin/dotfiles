@@ -20,6 +20,11 @@ brew install fd              # Required by LazyVim telescope
 brew install ripgrep        # Required by LazyVim telescope  
 brew install lazygit        # Git UI for LazyVim integration
 
+
+brew install typst 
+brew install tree 
+
+
 # # Mac OS Only
 # # Mac OS: GNU utilities
 # # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
