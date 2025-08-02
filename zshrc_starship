@@ -1,0 +1,177 @@
+#!/usr/bin/env zsh
+# Glenn's minimal zshrc with starship prompt
+
+# ============================================================================
+# PATH Configuration
+# ============================================================================
+
+# Add local bin directories to PATH
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"  # Apple Silicon homebrew path
+
+# Java (if needed)
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+# ============================================================================
+# Environment Variables
+# ============================================================================
+
+# Set default editor
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+# Set language
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+
+# ============================================================================
+# History Configuration
+# ============================================================================
+
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+# ============================================================================
+# Zsh Options
+# ============================================================================
+
+# Directory navigation
+setopt AUTO_CD              # cd by typing directory name
+setopt AUTO_PUSHD           # Push directories onto stack
+setopt PUSHD_IGNORE_DUPS    # Don't push duplicates
+setopt PUSHD_SILENT         # Don't print directory stack
+
+# Completion
+setopt COMPLETE_IN_WORD     # Complete from both ends of word
+setopt ALWAYS_TO_END        # Move cursor to end after completion
+setopt PATH_DIRS            # Perform path search even on command names with /
+setopt AUTO_MENU            # Show completion menu on tab press
+setopt AUTO_LIST            # Automatically list choices
+setopt AUTO_PARAM_SLASH     # Add trailing slash for directories
+
+# ============================================================================
+# Completion System
+# ============================================================================
+
+# Initialize completion system
+autoload -Uz compinit && compinit
+
+# Case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# Colorful completion
+zstyle ':completion:*' list-colors ''
+
+# ============================================================================
+# Key Bindings
+# ============================================================================
+
+# Use emacs key bindings
+bindkey -e
+
+# History search
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+
+# Word navigation
+bindkey '^[[1;5C' forward-word   # Ctrl+Right
+bindkey '^[[1;5D' backward-word  # Ctrl+Left
+
+# ============================================================================
+# Aliases
+# ============================================================================
+
+# System aliases
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Git aliases
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git pull'
+alias gd='git diff'
+alias gco='git checkout'
+alias gb='git branch'
+
+# Neovim
+alias vim='nvim'
+alias vi='nvim'
+
+# Safety aliases
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Shortcuts
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Tailscale (if available)
+if [[ -f "/Applications/Tailscale.app/Contents/MacOS/Tailscale" ]]; then
+    alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+fi
+
+# ============================================================================
+# Functions
+# ============================================================================
+
+# Create directory and cd into it
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Extract archives
+extract() {
+    if [ -f "$1" ]; then
+        case "$1" in
+            *.tar.bz2)   tar xjf "$1"   ;;
+            *.tar.gz)    tar xzf "$1"   ;;
+            *.bz2)       bunzip2 "$1"   ;;
+            *.rar)       unrar x "$1"   ;;
+            *.gz)        gunzip "$1"    ;;
+            *.tar)       tar xf "$1"    ;;
+            *.tbz2)      tar xjf "$1"   ;;
+            *.tgz)       tar xzf "$1"   ;;
+            *.zip)       unzip "$1"     ;;
+            *.Z)         uncompress "$1";;
+            *.7z)        7z x "$1"      ;;
+            *)           echo "'$1' cannot be extracted" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+# ============================================================================
+# Tool Integrations
+# ============================================================================
+
+# The Fuck - command correction
+if command -v thefuck &> /dev/null; then
+    eval $(thefuck --alias)
+fi
+
+# FZF - fuzzy finder
+if command -v fzf &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+fi
+
+# ============================================================================
+# Starship Prompt
+# ============================================================================
+
+# Initialize starship prompt (must be at the end)
+eval "$(starship init zsh)"
